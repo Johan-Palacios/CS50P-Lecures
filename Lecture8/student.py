@@ -3,13 +3,12 @@ class Student:
         self.name = name
         self.house = house
 
-    def __str__(self):
-        return f"{self.name} from {self.house}"
-
+    # Getter
     @property
     def house(self):
         return self._house
 
+    # Setter
     @house.setter
     def house(self, house):
         if house not in ["guatemala", "Huehuetenango"]:
@@ -26,16 +25,18 @@ class Student:
             raise ValueError("Missing name")
         self._name = name
 
+    def __str__(self):
+        return f"{self.name} from {self.house}"
+    
+    @classmethod
+    def get(cls):
+        name = input("Name: ")
+        house = input("House: ")
+        return cls(name, house)
 
 def main():
-    student = get_student()
+    student = Student.get()
     print(f"{student.name} from {student.house}")
-
-
-def get_student():
-    name = input("Name: ")
-    house = input("House: ")
-    return Student(name, house)
 
 
 if __name__ == "__main__":
